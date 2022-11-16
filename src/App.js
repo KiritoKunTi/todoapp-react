@@ -45,8 +45,8 @@ const Button = styled.button`
 
 function App() {
   const [todos, setTodos] = useState(["go workout", "go swing"]);
-
   const [input, setInput] = useState("");
+  const [done, setDone] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();

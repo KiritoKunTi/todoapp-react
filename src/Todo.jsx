@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import styled from "styled-components";
 
@@ -8,13 +8,14 @@ const ItemBox = styled.div`
   display: flex;
   align-items: center;
   padding: 20px;
-  background-color: #ccc;
   border-radius: 5px;
   margin-top: 5px;
+  background-color: ${(props) => (props.completed ? "#6abea7" : "#ccc")};
 `;
 
 const ItemText = styled.p`
   margin-left: 7px;
+  text-decoration: ${(props) => (props.completed ? "line-through" : "none")};
 `;
 
 const DeleteButton = styled.p`
@@ -24,10 +25,16 @@ const DeleteButton = styled.p`
 `;
 
 const Todo = ({ children, deleteTodo }) => {
+  const [done, setDone] = useState(false);
+
   return (
-    <ItemBox>
-      <input type="checkbox" />
-      <ItemText>{children}</ItemText>
+    <ItemBox completed={done}>
+      {done ? (
+        <input type="checkbox" checked={done} onChange={() => setDone(!done)} />
+      ) : (
+        <input type="checkbox" checked={done} onChange={() => setDone(!done)} />
+      )}
+      <ItemText completed={done}>{children}</ItemText>
       <DeleteButton>
         <RiDeleteBin6Line onClick={deleteTodo} size={20} />
       </DeleteButton>
