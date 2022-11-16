@@ -58,6 +58,13 @@ function App() {
     }
   };
 
+  const deleteTodo = (id) => {
+    const removeItem = todos.filter((todo) => {
+      return todo !== todos[id];
+    });
+    setTodos(removeItem);
+  };
+
   return (
     <>
       <AppWrapper>
@@ -71,7 +78,11 @@ function App() {
             {/* <Button>+</Button> */}
           </form>
           {todos.map((todo, id) => {
-            return <Todo key={id}>{todo}</Todo>;
+            return (
+              <Todo key={id} deleteTodo={() => deleteTodo(id)}>
+                {todo}
+              </Todo>
+            );
           })}
         </BoxContainer>
       </AppWrapper>

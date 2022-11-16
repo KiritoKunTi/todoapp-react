@@ -23,13 +23,13 @@ const DeleteButton = styled.p`
   cursor: pointer;
 `;
 
-const Todo = ({ children }) => {
+const Todo = ({ children, deleteTodo }) => {
   return (
     <ItemBox>
       <input type="checkbox" />
       <ItemText>{children}</ItemText>
       <DeleteButton>
-        <RiDeleteBin6Line size={20} />
+        <RiDeleteBin6Line onClick={deleteTodo} size={20} />
       </DeleteButton>
     </ItemBox>
   );
